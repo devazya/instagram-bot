@@ -34,6 +34,14 @@ public class WebhookController {
     }
 
     /**
+     * Health check endpoint to keep the tunnel alive.
+     */
+    @GetMapping(value = "/ping", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> keepAlive() {
+        return ResponseEntity.ok("Bot is awake!");
+    }
+
+    /**
      * STEP 1 — Webhook verification (one-time, done when you click "Verify and Save"
      * in the Meta dashboard).
      *
