@@ -1,0 +1,23 @@
+# Maven
+target/
+*.class
+
+# Logs
+logs/
+*.log
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets — never commit real tokens
+.env
+application-local.properties
