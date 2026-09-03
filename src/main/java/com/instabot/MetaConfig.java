@@ -30,6 +30,12 @@ public class MetaConfig {
     /** The message text sent back to the user via Private Reply. */
     private String replyMessage;
 
+    /** The Instagram Business Account ID (different from the Page ID) — used to poll for media/comments. */
+    private String instagramAccountId;
+
+    /** How often (in milliseconds) the polling service checks for new comments. */
+    private long pollingIntervalMs;
+
     // --- Getters and setters (required for Spring's property binding) ---
 
     public String getVerifyToken() {
@@ -78,5 +84,21 @@ public class MetaConfig {
 
     public void setReplyMessage(String replyMessage) {
         this.replyMessage = replyMessage;
+    }
+
+    public String getInstagramAccountId() {
+        return instagramAccountId;
+    }
+
+    public void setInstagramAccountId(String instagramAccountId) {
+        this.instagramAccountId = instagramAccountId;
+    }
+
+    public long getPollingIntervalMs() {
+        return pollingIntervalMs;
+    }
+
+    public void setPollingIntervalMs(long pollingIntervalMs) {
+        this.pollingIntervalMs = pollingIntervalMs;
     }
 }

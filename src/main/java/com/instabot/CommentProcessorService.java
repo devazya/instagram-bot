@@ -60,6 +60,30 @@ public class CommentProcessorService {
     }
 
     /**
+     * Checks a single comment (id + text) against the configured trigger keywords
+     * and dispatches a private reply if it matches. Shared entry point used by
+     * both the webhook path (process(WebhookPayload)) and CommentPollingService,
+     * so the matching/dispatch logic lives in exactly one place.
+     *
+     * @return true if the comment matched and a reply was dispatched
+     */
+    public boolean processComment(String commentId, String commentText) {
+        if (commentId == null || commentText == null) {
+            return false;
+        }
+
+        if (matchesTriggerKeyword(commentText)) {
+            log.info("Trigger keyword matched in comment_id={} text=\"{}\" — dispatching private reply.",
+                    commentId, commentText);
+            metaGraphApiService.sendPrivateReply(commentId);
+            return true;
+        }
+
+        log.debug("Comment_id={} did not match any trigger keyword. text=\"{}\"", commentId, commentText);
+        return false;
+    }
+
+    /**
      * Case-insensitive check: does the comment text contain ANY of our configured
      * trigger keywords (e.g. "LINK", "SETUP")?
      */

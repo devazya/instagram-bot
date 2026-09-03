@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: instagram-bot
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: META_PAGE_ID
+        sync: false
+      - key: META_PAGE_ACCESS_TOKEN
+        sync: false
+      - key: META_VERIFY_TOKEN
+        sync: false
+      - key: META_TRIGGER_KEYWORDS
+        sync: false
+      - key: META_IG_ACCOUNT_ID
+        sync: false
+      - key: META_POLLING_INTERVAL_MS
+        value: "60000"
